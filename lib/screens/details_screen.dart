@@ -101,13 +101,16 @@ class _PosterAndTitle extends StatelessWidget {
         padding: const EdgeInsets.symmetric(horizontal: 20),
         child: Row(
           children: [
-            ClipRRect(
-              borderRadius: BorderRadius.circular(20),
-              child: FadeInImage(
-                placeholder: const AssetImage('assets/no-image.jpg'),
-                image: NetworkImage(movie.fullPosterImg),
-                height: 150,
-                fit: BoxFit.cover,
+            Hero(
+              tag: movie.heroId!,
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(20),
+                child: FadeInImage(
+                  placeholder: const AssetImage('assets/no-image.jpg'),
+                  image: NetworkImage(movie.fullPosterImg),
+                  height: 150,
+                  fit: BoxFit.cover,
+                ),
               ),
             ),
             const SizedBox(
@@ -126,12 +129,6 @@ class _PosterAndTitle extends StatelessWidget {
                     overflow: TextOverflow.ellipsis,
                     maxLines: 2,
                   ),
-                  // Text(
-                  //   movie.title,
-                  //   style: textTheme.headline5,
-                  //   overflow: TextOverflow.ellipsis,
-                  //   maxLines: 2,
-                  // ),
                   Text(
                     movie.originalTitle,
                     style: textTheme.subtitle1,

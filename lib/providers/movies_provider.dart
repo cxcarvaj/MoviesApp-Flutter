@@ -11,6 +11,7 @@ class MoviesProvider extends ChangeNotifier {
   List<Movie> popularMovies = [];
 
   Map<int, List<Cast>> moviesCast = {};
+  Map<int, List<Movie>> searchedMoviesResults = {};
 
   int _popularPage = 0;
 
@@ -71,6 +72,10 @@ class MoviesProvider extends ChangeNotifier {
   }
 
   Future<List<Movie>> searchMovies(String query) async {
+    if (searchedMoviesResults.containsKey(query)) {
+      return searchedMoviesResults[query]!;
+    }
+    print('making a request to search movies');
     final url = Uri.https(_baseUrl, '3/search/movie', {
       'api_key': _apiKey,
       'language': _language,
